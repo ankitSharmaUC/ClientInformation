@@ -1,6 +1,7 @@
 package com.unicommerce.clientInformation.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -8,11 +9,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "tenant",uniqueConstraints =@UniqueConstraint(name = "code",columnNames={"code"}))
-public class Tenant {
+public class Tenant implements java.io.Serializable {
 
 
     private Integer                id;
-    private String              code;
+    private String               code;
     private String              name;
     private String              accessUrl;
     private String              accountType;
@@ -24,6 +25,29 @@ public class Tenant {
     private String              industry;
     private LocalDateTime       created;
     private LocalDateTime       updated;
+
+    public Tenant() {
+    }
+
+    public Tenant(String code, String name, String accessUrl, String accountType, String statusCode, String source, LocalDate goLiveDate, String businessName, String businessModel, String industry, LocalDateTime created) {
+        this.code = code;
+        this.name = name;
+        this.accessUrl = accessUrl;
+        this.accountType = accountType;
+        this.statusCode = statusCode;
+        this.source = source;
+        this.goLiveDate = goLiveDate;
+        this.businessName = businessName;
+        this.businessModel = businessModel;
+        this.industry = industry;
+        this.created = created;
+    }
+
+    public Tenant(String code, String name, LocalDateTime created) {
+        this.code = code;
+        this.name = name;
+        this.created = created;
+    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

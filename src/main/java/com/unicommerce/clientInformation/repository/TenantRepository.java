@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface TenantRepository extends JpaRepository<Tenant, Integer> {
   List<Tenant> findAllByCodeStartingWith(@Param("code") String code, Pageable pageable);
+  Tenant getTenantByCode(String tenantCode);
   }
